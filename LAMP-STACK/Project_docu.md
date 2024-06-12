@@ -74,10 +74,90 @@ Test Apache Configuration file:
 ```sh
 sudo systemctl reload apache2
 ```
-Set up the browser page:
-```sh
-sudo sh -c "echo 'Hello LAMP from hostname ' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) ' with public IP ' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html"
+Set up the browser page:   
+Create the index.html file in /var/www/projectlamp and input the following
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 10px;
+            text-align: center;
+        }
+        nav {
+            margin: 0;
+            padding: 10px;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Simple Website</h1>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+    <main>
+        <h2>Home Page</h2>
+        <p>This is a simple website deployed on an Apache server. You can navigate to different sections using the links above.</p>
+    </main>
+    <footer>
+        &copy; 2024 My Simple Website
+    </footer>
+</body>
+</html>
+
 ```
 Display the webpage on your browser:
-![image](https://github.com/Adejuwonvictor/Steghub_repo/blob/main/LAMP-STACK/images/Screenshot%20(40).png)
+![image](https://github.com/Adejuwonvictor/Steghub_repo/blob/main/LAMP-STACK/images/Screenshot%20(46).png)
+
+### SETTING UP PHP ON THE WEBSITE
+
+Step 1: Edit the /etc/apache2/mods-enabled/dir conf file to prioritize idex.php file
+```sh
+sudo vim /etc/apache2/mods-enabled/dir.conf
+```
+Step 2: create a new index.php file in the /var/www/projectlamp
+```sh
+vim /var/wwww/projectlamp/index.php
+```
+Step 2: Include the following in the file
+```sh
+<?php
+phpinfo ();
+```
+save the file when done and refresh the page
 
